@@ -43,28 +43,28 @@ int main() {
 				std::sregex_iterator end2;
 				if ((std::regex_search(VectorString[VectorElement], isProteinNGlc)) && (std::regex_search(VectorString[VectorElement], ProteinID)) == false) 
 					/*if statement for "if N-Glc sequence was found, do stuff below" and an insurance check that a protein description was not passed through by accident*/
+					FASTA_Output << TemporaryContainer1 << " " << std::endl;
 				{
-					FASTA_Output << TemporaryContainer1 << " "; 
+					//FASTA_Output << TemporaryContainer1 << " "; 
 					for (; iter1 != end1; ++iter1) // a loop to iterate through sregex_iterator to make sure that all matches of N-Glycosylation are found
 					{
 						++NGlcounter; //Update N-Glycosylation counter
 					}
-				FASTA_Output << std::endl << "Detected N-linked glycosylation (s): " << NGlcounter << std::endl;
+				FASTA_Output << "Detected N-linked glycosylation (s): " << NGlcounter << std::endl;
+				goto CGlc;
 				}
-				else if ((std::regex_search(VectorString[VectorElement], isProteinCGlc)) && (std::regex_search(VectorString[VectorElement], ProteinID)) == false)
-					/*if statement for "if N-Glc sequence was found, do stuff below" and an insurance check that a protein description was not passed through by accident*/
+				CGlc:if ((std::regex_search(VectorString[VectorElement], isProteinCGlc)) && (std::regex_search(VectorString[VectorElement], ProteinID)) == false)
+					/*if statement for "if C-Glc sequence was found, do stuff below" and an insurance check that a protein description was not passed through by accident*/
 				{
-					FASTA_Output << TemporaryContainer1 << " ";
 					for (; iter2 != end2; ++iter2) //a loop to iterate through sregex_iterator to make sure that all matches of C-Glycosylation are found
 					{
 						++CGlcounter; // Update C-Glycosylation counter 
 					}
-				FASTA_Output << std::endl << "Detected C-linked glycosylation (s): " << CGlcounter << std::endl;
+				FASTA_Output << "Detected C-linked glycosylation (s): " << CGlcounter << std::endl;
 				}
 				else // if no matches to C-Glc and N-Glc are not found within the sequence
 				{
-				FASTA_Output << TemporaryContainer1 << std::endl << "Detected no possible glycosylation: "
-						<< std::endl;
+				FASTA_Output << "No more possible glycosylations were detected." << std::endl;
 				}
 			}
 			if (VectorElement % 2 == 0) //Even iterator values of vector are Protein Descriptors
