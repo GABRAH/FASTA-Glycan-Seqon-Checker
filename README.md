@@ -4,5 +4,5 @@ Program needs to be compiled, expects files to be located in local directory. In
 
 Current issues: 
 
-FASTA file contains sequences of multiple chains for a single protein, thus inflating the numbers
+FASTA file contains sequences of multiple chains for a single protein, thus inflating the numbers \n
 Program does not currently highlight where it had found a matching sequence
